@@ -50,6 +50,35 @@
             font-weight: bold;
             color: #4e4376;
         }
+        .comment-section {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .comment-box {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f4f4f4;
+            border-left: 5px solid #4e4376;
+            border-radius: 5px;
+            color: #333;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 8px 12px;
+            margin-top: 5px;
+            background: #4e4376;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #2b5876;
+        }
     </style>
 </head>
 <body>
@@ -68,12 +97,33 @@
             <p><strong>Posted on:</strong> March 5, 2025</p>
             <p>We’re passionate about tech, gaming, and creative pursuits. Whether it’s coding, design, or just having fun, we’ll be sharing everything here! 🎮✨</p>
         </div>
-        <br>
-        <form action="#" method="GET">
-            <label for="comment">Leave a Comment:</label><br>
-            <input type="text" id="comment" name="comment" required>
-            <button type="submit">Submit</button>
-        </form>
+
+        <div class="comment-section">
+            <h2>💬 Comments</h2>
+            <form id="commentForm">
+                <label for="comment">Leave a Comment:</label><br>
+                <input type="text" id="comment" name="comment" required>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="commentList"></div>
+        </div>
     </div>
+
+    <script>
+        document.getElementById("commentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var commentInput = document.getElementById("comment");
+            var commentText = commentInput.value.trim();
+
+            if (commentText !== "") {
+                var commentList = document.getElementById("commentList");
+                var newComment = document.createElement("div");
+                newComment.classList.add("comment-box");
+                newComment.innerText = commentText;
+                commentList.appendChild(newComment);
+                commentInput.value = ""; // Clear input after submitting
+            }
+        });
+    </script>
 </body>
 </html>
